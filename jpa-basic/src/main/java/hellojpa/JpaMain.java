@@ -10,16 +10,26 @@ public class JpaMain {
         EntityManager em = emf.createEntityManager();
 
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
+        // 엔티티 매니저는 데이터 변경시 트랜잭션 시작
+        tx.begin(); // [트랜잭션] 시작
 
         try {
-            //Member findMember = em.find(Member.class, 1L);
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList();
-            for(Member member : result){
-                System.out.println("member.name : "+ member.getName());
-            }
-            tx.commit();
+
+            // 비영속
+     /*       Member member = new Member();
+            member.setId(101L);
+            member.setName("HelloJPA");
+
+            // 영속
+            System.out.println("=== BEFORE ===");
+            em.persist(member);
+            System.out.println("=== AFTER ===");*/
+
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
+
+            // 커밋하는 순간 데이터베이스에 insert sql 을 보낸다
+            tx.commit(); // [트랜잭션] 커밋
         }catch (Exception e){
             tx.rollback();
         }finally {
