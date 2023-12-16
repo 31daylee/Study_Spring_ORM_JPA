@@ -14,9 +14,11 @@ public class JpaMain {
         tx.begin(); // [트랜잭션] 시작
 
         try {
-            Member member = new Member(200L, "member200");
-            em.persist(member);
-            em.flush();
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAA");
+
+            em.detach(member); // 특정 엔티티만 준영속 상태로 전환 -> select query 만 나가고 update query 는 나가지 않는다.
+            System.out.println("============");
 
             // 커밋하는 순간 데이터베이스에 insert sql 을 보낸다
             tx.commit(); // [트랜잭션] 커밋
