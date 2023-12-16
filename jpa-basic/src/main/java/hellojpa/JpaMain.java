@@ -14,19 +14,11 @@ public class JpaMain {
         tx.begin(); // [트랜잭션] 시작
 
         try {
+            Member member = em.find(Member.class, 150L);
+            member.setName("Z");
 
-            // 비영속
-     /*       Member member = new Member();
-            member.setId(101L);
-            member.setName("HelloJPA");
 
-            // 영속
-            System.out.println("=== BEFORE ===");
-            em.persist(member);
-            System.out.println("=== AFTER ===");*/
-
-            Member findMember1 = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
+            System.out.println("============");
 
             // 커밋하는 순간 데이터베이스에 insert sql 을 보낸다
             tx.commit(); // [트랜잭션] 커밋

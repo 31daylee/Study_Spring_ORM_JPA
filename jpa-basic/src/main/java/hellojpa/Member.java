@@ -10,6 +10,17 @@ public class Member {
     private Long id;
     private String name;
 
+    // 기본 생성자
+    public Member(){
+
+    }
+
+    // 매개변수가 있는 생성사 만들시 오류가 생기므로 Jpa에서는 기본생성자 필요
+    public  Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -25,4 +36,6 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
