@@ -14,16 +14,26 @@ public class JpaMain {
         tx.begin(); // [트랜잭션] 시작
 
         try {
-       /*     Member member1 = em.find(Member.class, 150L);
-            member1.setName("AAAAA");
+            Member member1 = new Member();
+            member1.setUsername("A");
 
-            //em.detach(member); // 특정 엔티티만 준영속 상태로 전환 -> select query 만 나가고 update query 는 나가지 않는다.
-            em.clear(); // 1차 캐쉬를 통으로 지운다.
+            Member member2 = new Member();
+            member2.setUsername("B");
 
-            Member member2 = em.find(Member.class, 150L);
-            System.out.println("============");
-*/
-            // 커밋하는 순간 데이터베이스에 insert sql 을 보낸다
+            Member member3 = new Member();
+            member3.setUsername("C");
+
+            System.out.println("==============");
+
+            em.persist(member1); // 1, 51 까지의 공간을 확보 (DB에 다녀옴)
+            em.persist(member2); // Memory에만 갔다옴 -> sequence 전략으로 하면 한 번에 모았다가 저장하는게 가능
+            em.persist(member3); // Memory
+
+            System.out.println("member1 : "+ member1.getId());
+            System.out.println("member2 : "+ member2.getId());
+            System.out.println("member3 : "+ member3.getId());
+            System.out.println("==============");
+
             tx.commit(); // [트랜잭션] 커밋
         }catch (Exception e){
             tx.rollback();
