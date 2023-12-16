@@ -14,11 +14,9 @@ public class JpaMain {
         tx.begin(); // [트랜잭션] 시작
 
         try {
-            Member member = em.find(Member.class, 150L);
-            member.setName("Z");
-
-
-            System.out.println("============");
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+            em.flush();
 
             // 커밋하는 순간 데이터베이스에 insert sql 을 보낸다
             tx.commit(); // [트랜잭션] 커밋
