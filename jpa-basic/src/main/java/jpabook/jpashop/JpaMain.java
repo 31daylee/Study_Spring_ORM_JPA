@@ -1,11 +1,8 @@
 package jpabook.jpashop;
 
-import hellojpa.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
-
 import javax.persistence.*;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
