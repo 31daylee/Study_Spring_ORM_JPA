@@ -1,6 +1,8 @@
 package jpabook.jpashop;
 
 import hellojpa.Member;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +18,8 @@ public class JpaMain {
         tx.begin(); // [트랜잭션] 시작
 
         try {
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
             tx.commit(); // [트랜잭션] 커밋
         }catch (Exception e){
             tx.rollback();
