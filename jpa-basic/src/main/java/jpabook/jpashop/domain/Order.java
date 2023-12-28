@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS") // Order 이란 예약어 때문에 ORDERS 라 많이 쓴다
-public class Order {
+public class Order extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
